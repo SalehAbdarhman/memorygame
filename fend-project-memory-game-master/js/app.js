@@ -74,15 +74,18 @@ cards.forEach(function(card) {
             document.getElementById('moves').innerText = moves
 
             if (clicks === 0) {
-                OpenedCard = card;
+                
+
+              OpenedCard = card;
                 clicks++;
-            } else {
-                if (card === OpenedCard) {
+            } else if (clicks === 1){
+              if (card === OpenedCard ) { // check if the same card then close the current one
                     clicks--;
                     OpenedCard = "";
+                    card.classList.remove('show', 'open');
+                    console.log("here");
 
-                }
-                if (card.dataset.t == OpenedCard.dataset.t) { // cards is matching 
+                }else if (card.dataset.t == OpenedCard.dataset.t) { // cards is matching 
                     card.classList.add('match');// change css class to be as matched
                     OpenedCard.classList.add('match');
 
@@ -99,7 +102,6 @@ cards.forEach(function(card) {
                     }
                     clicks--;
                 } else {
-
 
                     clicks++;
                 }
@@ -136,10 +138,7 @@ function checkingRating() {
         stars--;
         document.getElementById("rating").innerHTML = '<li><i class="fa fa-star"></i></li>';
     }
-    if (moves === 50) { // to show no star
-        stars--;
-        document.getElementById("rating").innerHTML = ' ';
-    }
+   
 
 
 }
